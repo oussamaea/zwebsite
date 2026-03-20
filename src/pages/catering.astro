@@ -1,0 +1,157 @@
+---
+import PageHero from '../components/PageHero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Catering | Solara Taverna"
+	description="Plan your gathering with Solara Taverna catering, featuring Mediterranean menus for private and corporate events."
+>
+	<PageHero
+		eyebrow="Catering"
+		title="Mediterranean Catering for Memorable Gatherings"
+		description="From intimate dinners to larger celebrations, our team designs menus and service styles around your event."
+		theme="catering"
+	/>
+
+	<section class="site-container page-section">
+		<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+			<div class="surface-panel" data-reveal>
+				<SectionTitle
+					eyebrow="What We Offer"
+					title="Thoughtful Menus, Seamless Service"
+					description="Choose from plated dinners, family-style spreads or reception service with seasonal Mediterranean dishes."
+				/>
+				<ul class="detail-list">
+					<li>Private celebrations and weddings</li>
+					<li>Corporate lunches and evening events</li>
+					<li>On-site chefs and delivery packages</li>
+					<li>Vegetarian, vegan, and gluten-aware options</li>
+				</ul>
+			</div>
+
+			<div class="surface-panel-strong" data-reveal data-reveal-delay="80">
+				<SectionTitle
+					eyebrow="Inquiry Form"
+					title="Catering Request"
+					description="Share your event details and we will follow up with availability and a suggested menu."
+				/>
+
+				<form
+					name="catering-inquiry"
+					method="POST"
+					data-netlify="true"
+					data-netlify-honeypot="bot-field"
+					netlify-honeypot="bot-field"
+					class="mt-6 space-y-4"
+					accept-charset="UTF-8"
+				>
+					<input type="hidden" name="form-name" value="catering-inquiry" />
+					<p class="hidden">
+						<label>Do not fill this out: <input name="bot-field" /></label>
+					</p>
+
+					<div>
+						<label for="catering-name" class="form-label">Name</label>
+						<input
+							id="catering-name"
+							name="name"
+							type="text"
+							required
+							autocomplete="name"
+							class="form-control"
+						/>
+					</div>
+
+					<div class="form-grid-2">
+						<div>
+							<label for="catering-email" class="form-label">Email</label>
+							<input
+								id="catering-email"
+								name="email"
+								type="email"
+								required
+								autocomplete="email"
+								class="form-control"
+							/>
+						</div>
+						<div>
+							<label for="catering-phone" class="form-label">Phone</label>
+							<input
+								id="catering-phone"
+								name="phone"
+								type="tel"
+								required
+								autocomplete="tel"
+								class="form-control"
+							/>
+						</div>
+					</div>
+
+					<div class="form-grid-2">
+						<div>
+							<label for="event-date" class="form-label">Event Date</label>
+							<input
+								id="event-date"
+								name="event_date"
+								type="date"
+								required
+								class="form-control"
+							/>
+						</div>
+						<div>
+							<label for="guest-count" class="form-label">Guest Count</label>
+							<input
+								id="guest-count"
+								name="guest_count"
+								type="number"
+								min="1"
+								required
+								class="form-control"
+							/>
+						</div>
+					</div>
+
+					<div>
+						<label for="service-type" class="form-label">Service Type</label>
+						<select
+							id="service-type"
+							name="service_type"
+							required
+							class="form-control"
+						>
+							<option value="">Select service type</option>
+							<optgroup label="Paninis & Meals">
+								<option value="panini-platters">Panini Platters</option>
+								<option value="individual-boxed-paninis">Individual Boxed Paninis</option>
+								<option value="individual-boxed-meals">Individual Boxed Meals</option>
+								<option value="family-style-trays">Family-Style Trays</option>
+							</optgroup>
+							<optgroup label="Extras">
+								<option value="salads-and-sides">Salads &amp; Sides</option>
+								<option value="desserts-and-sweets">Desserts &amp; Sweets</option>
+							</optgroup>
+							<optgroup label="Other">
+								<option value="custom-request">Custom Request</option>
+							</optgroup>
+						</select>
+					</div>
+
+					<div>
+						<label for="catering-notes" class="form-label">Notes</label>
+						<textarea
+							id="catering-notes"
+							name="notes"
+							rows="5"
+							placeholder="Tell us about your venue, preferred menu style, and any dietary requests."
+							class="form-control"
+						></textarea>
+					</div>
+
+					<button type="submit" class="btn-primary w-full sm:w-auto">Send Catering Inquiry</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

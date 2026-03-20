@@ -1,11 +1,109 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import { menuSections, type MenuItem } from '../data/menu';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const featuredDishes = [
+	menuSections.find((section) => section.title === 'Starters')?.items[0],
+	menuSections.find((section) => section.title === 'Mains')?.items[0],
+	menuSections.find((section) => section.title === 'Desserts')?.items[0]
+].filter((dish): dish is MenuItem => Boolean(dish));
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+	title="Solara Taverna | Warm Mediterranean Dining"
+	description="Gather for a relaxed Mediterranean meal with seasonal ingredients, coastal flavors, and elegant hospitality."
+>
+	<PageHero
+		eyebrow="Mediterranean Kitchen"
+		title="Served with Warm Mediterranean Hospitality"
+		description="The first of its kind in Pembroke! Come and enjoy"
+		backgroundVideoSrc="/videos/hero.mp4"
+		enableParallax={true}
+	>
+		<a slot="actions" href="/menu" class="btn-primary">Explore The Menu</a>
+		<a slot="actions" href="/reservations" class="btn-secondary">Reserve A Table</a>
+	</PageHero>
+
+	<section class="site-container page-section">
+		<div class="grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
+			<div class="surface-panel space-y-6" data-reveal>
+				<p class="kicker-chip">Since 2021</p>
+				<SectionTitle
+					eyebrow="Our Philosophy"
+					title="A Calm, Refined Dining Experience Rooted In The Mediterranean"
+					description="We cook with olive oil, citrus, herbs, and peak-season produce to create dishes that feel generous, elegant, and deeply satisfying."
+				/>
+				<p class="text-base leading-relaxed text-brand-muted">
+					At Zaytouna, thoughtful pacing matters as much as flavor. Our team is here to make every
+					visit feel easy, warm, and memorable.
+				</p>
+			</div>
+
+			<aside class="surface-panel-strong" data-reveal data-reveal-delay="90">
+				<h2 class="section-title text-2xl sm:text-3xl">At Zaytouna</h2>
+				<p class="section-copy mt-2">
+					A welcoming self-service Mediterranean experience designed for fresh, flavorful everyday dining.
+				</p>
+				<ul class="detail-list">
+					<li><span class="font-semibold text-brand-ink">Open:</span> Monday to Saturday</li>
+					<li><span class="font-semibold text-brand-ink">Style:</span> Self-service Mediterranean dining</li>
+					<li>
+						<span class="font-semibold text-brand-ink">Menu Highlights:</span> Paninis, hot meals, salads,
+						juices, and smoothies
+					</li>
+				</ul>
+				<div class="mt-6 flex flex-wrap gap-3">
+					<a href="/menu" class="btn-primary w-full sm:w-auto">Browse Menu</a>
+					<a href="/contact" class="btn-secondary w-full sm:w-auto">Contact Zaytouna</a>
+				</div>
+			</aside>
+		</div>
+	</section>
+
+	<section class="site-container page-section pt-0 sm:pt-0">
+		<div data-reveal="soft">
+			<SectionTitle
+				eyebrow="Featured Dishes"
+				title="A Few Guest Favorites"
+				description="Balanced flavors, seasonal ingredients, and dishes that invite another bite."
+			/>
+		</div>
+		<ul class="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				featuredDishes.map((dish, index) => (
+					<li class="feature-card" data-reveal data-reveal-delay={String(index * 80)}>
+						<div class="flex items-start justify-between gap-3">
+							<h3 class="text-lg font-semibold leading-tight text-brand-ink sm:text-xl">{dish.name}</h3>
+							{dish.price && <p class="menu-item-price">{dish.price}</p>}
+						</div>
+						{
+							dish.description && (
+								<p class="mt-3 text-sm leading-relaxed text-brand-muted sm:text-base">
+									{dish.description}
+								</p>
+							)
+						}
+					</li>
+				))
+			}
+		</ul>
+		<div class="mt-8" data-reveal="soft">
+			<a href="/menu" class="btn-secondary">Browse Full Menu</a>
+		</div>
+	</section>
+
+	<section class="site-container page-section pt-0 sm:pt-0">
+		<div class="surface-panel-strong flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between" data-reveal>
+			<div class="max-w-xl">
+				<p class="eyebrow">Reservations Recommended</p>
+				<h2 class="section-title text-2xl sm:text-3xl">Join Us For A Relaxed Evening At Zaytouna</h2>
+				<p class="section-copy mt-2">
+					Reserve ahead for prime evening seating and let our team prepare your table.
+				</p>
+			</div>
+			<a href="/reservations" class="btn-primary w-full sm:w-auto">Reserve Now</a>
+		</div>
+	</section>
+</BaseLayout>

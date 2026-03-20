@@ -1,0 +1,51 @@
+---
+import PageHero from '../components/PageHero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Reservations | Solara Taverna"
+	description="Reserve your table at Solara Taverna. Enjoy Mediterranean dinner service in a warm, elegant setting."
+>
+	<PageHero
+		eyebrow="Reservations"
+		title="Reserve Your Table At Solara"
+		description="Secure your preferred time in advance, especially for weekend evenings and celebratory dinners."
+		theme="reservations"
+	/>
+
+	<section class="site-container page-section">
+		<div class="surface-panel-strong" data-reveal>
+			<SectionTitle
+				eyebrow="OpenTable"
+				title="Book Through OpenTable"
+				description="Use the reservation panel below to choose your party size and preferred seating time."
+			/>
+
+			<div class="embed-shell" data-reveal data-reveal-delay="70">
+				<!-- Replace this placeholder iframe src with your restaurant's real OpenTable embed URL. -->
+				<iframe
+					title="OpenTable reservation widget"
+					src="https://www.opentable.com/widget/reservation/canvas?rid=123456&type=standard&theme=standard&color=1&dark=false&iframe=true&domain=com&lang=en-US"
+					loading="lazy"
+					class="h-[620px] w-full border-0"
+				></iframe>
+			</div>
+
+			<div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between" data-reveal="soft">
+				<p class="reservation-note">
+					If the embedded experience does not load on your device, use the direct reservation link.
+				</p>
+				<a
+					href="https://www.opentable.com/"
+					target="_blank"
+					rel="noreferrer"
+					class="btn-primary w-full sm:w-auto"
+				>
+					Reserve Now
+				</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

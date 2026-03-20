@@ -1,0 +1,66 @@
+---
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	backgroundVideoSrc?: string;
+	backgroundVideoPoster?: string;
+	enableParallax?: boolean;
+	theme?: 'default' | 'menu' | 'contact' | 'reservations' | 'catering';
+}
+
+const {
+	eyebrow,
+	title,
+	description,
+	backgroundVideoSrc,
+	backgroundVideoPoster,
+	enableParallax = false,
+	theme = 'default'
+} = Astro.props;
+const hasActions = Astro.slots.has('actions');
+const isCinematic = Boolean(backgroundVideoSrc);
+const themeClass = !isCinematic && theme !== 'default' ? `hero-shell-${theme}` : undefined;
+const staticHeroClass = !isCinematic ? 'hero-shell-static bg-beige-gradient-soft' : undefined;
+---
+
+<header
+	class:list={['hero-shell', staticHeroClass, isCinematic && 'hero-shell-cinematic', themeClass]}
+	data-parallax-root={enableParallax ? '' : undefined}
+	data-home-hero={isCinematic ? '' : undefined}
+>
+	{
+		backgroundVideoSrc && (
+			<div class="hero-media" aria-hidden="true">
+				<video
+					class="hero-video"
+					autoplay
+					muted
+					loop
+					playsinline
+					preload="metadata"
+					poster={backgroundVideoPoster}
+					onloadeddata="this.closest('.hero-media')?.classList.add('hero-media-ready')"
+					onerror="this.closest('.hero-media')?.classList.add('hero-media-fallback')"
+				>
+					<source src={backgroundVideoSrc} type="video/mp4" />
+				</video>
+				<div class="hero-video-overlay"></div>
+			</div>
+		)
+	}
+	<div class="site-container hero-inner" data-parallax={enableParallax ? 'content' : undefined}>
+		<div class="max-w-3xl space-y-4">
+			{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+			<h1 class="hero-title">{title}</h1>
+			{description && <p class="hero-copy">{description}</p>}
+			{
+				hasActions && (
+					<div class="hero-actions">
+						<slot name="actions" />
+					</div>
+				)
+			}
+		</div>
+	</div>
+</header>

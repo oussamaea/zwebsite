@@ -1,0 +1,133 @@
+---
+import MenuSection from '../components/MenuSection.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import { menuNotes, menuSections, type MenuSection as MenuDataSection } from '../data/menu';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const slugify = (value: string) =>
+	value
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '');
+
+type MenuGroup = {
+	id: string;
+	title: string;
+	description: string;
+	sectionTitles: string[];
+};
+
+const menuGroups: MenuGroup[] = [
+	{
+		id: 'kitchen',
+		title: 'Kitchen Specialties',
+		description:
+			'From starters to signature mains, these plates anchor the full dining experience.',
+		sectionTitles: ['Starters', 'Mains', "Kids' Meals", 'Desserts']
+	},
+	{
+		id: 'panini-bar',
+		title: 'Panini Bar & Fresh Salads',
+		description:
+			'Handheld favorites and vibrant salads prepared with Mediterranean ingredients.',
+		sectionTitles: ['Paninis', 'Premium Paninis', 'Salads']
+	},
+	{
+		id: 'drinks',
+		title: 'Fresh Pressed Drinks',
+		description:
+			'House juices and smoothies blended to pair with savory and sweet menu choices.',
+		sectionTitles: ['Juices', 'Smoothies']
+	}
+];
+
+const sectionByTitle = new Map(menuSections.map((section) => [section.title, section]));
+
+const groupedSections = menuGroups.map((group) => ({
+	...group,
+	sections: group.sectionTitles
+		.map((title) => {
+			const section = sectionByTitle.get(title);
+			if (!section) return undefined;
+			return {
+				section,
+				sectionId: slugify(title)
+			};
+		})
+		.filter(
+			(entry): entry is { section: MenuDataSection; sectionId: string } => Boolean(entry)
+		)
+}));
+
+const navSections = groupedSections.flatMap((group) => group.sections);
+---
+
+<BaseLayout
+	title="Menu | Solara Taverna"
+	description="Explore our full menu with starters, mains, paninis, salads, juices, and desserts prepared with Mediterranean warmth."
+>
+	<PageHero
+		eyebrow="Menu"
+		title="A Menu Built Around Mediterranean Comfort"
+		description="Browse starters, hearty mains, artisan paninis, fresh salads, and house-made drinks in one elegant menu."
+		theme="menu"
+	/>
+
+	<section class="site-container page-section">
+		<div class="surface-panel mb-10 space-y-5" data-reveal>
+			<SectionTitle
+				eyebrow="Curated Selection"
+				title="Easy To Browse, Designed For Sharing"
+				description="Each section is grouped so guests can move naturally from small plates and mains to paninis, salads, and refreshing drinks."
+			/>
+			<p class="section-copy max-w-3xl">
+				Please let us know about allergies or dietary preferences before ordering and our team will be happy
+				to guide you.
+			</p>
+		</div>
+
+		<nav aria-label="Menu sections" class="mb-10 flex flex-wrap gap-2" data-reveal="soft">
+			{
+				navSections.map(({ section, sectionId }) => (
+					<a href={`#${sectionId}`} class="menu-nav-link">
+						{section.title}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="space-y-12">
+			{
+				groupedSections.map((group) => (
+					<section class="menu-group surface-panel-strong" aria-labelledby={`${group.id}-title`} data-reveal>
+						<div class="menu-group-header">
+							<h2 id={`${group.id}-title`} class="menu-group-title">
+								{group.title}
+							</h2>
+							<p class="section-copy max-w-3xl">{group.description}</p>
+						</div>
+						<div class="mt-7 space-y-6">
+							{
+								group.sections.map(({ section, sectionId }) => (
+									<MenuSection section={section} sectionId={sectionId} />
+								))
+							}
+						</div>
+					</section>
+				))
+			}
+		</div>
+
+		<section class="menu-notes-panel mt-12" aria-labelledby="menu-notes-title" data-reveal="soft">
+			<h2 id="menu-notes-title" class="menu-notes-title">Menu Notes</h2>
+			<ul class="menu-notes-list">
+				{
+					menuNotes.map((note) => (
+						<li class="menu-note-item">{note}</li>
+					))
+				}
+			</ul>
+		</section>
+	</section>
+</BaseLayout>

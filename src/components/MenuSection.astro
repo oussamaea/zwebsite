@@ -1,0 +1,35 @@
+---
+import type { MenuSection as MenuDataSection } from '../data/menu';
+
+interface Props {
+	section: MenuDataSection;
+	sectionId: string;
+}
+
+const { section, sectionId } = Astro.props as Props;
+const titleId = `${sectionId}-title`;
+---
+
+<section id={sectionId} aria-labelledby={titleId} class="menu-section" data-reveal="soft">
+	<div class="menu-section-header">
+		<h3 id={titleId} class="section-title text-[1.9rem] sm:text-[2.25rem]">{section.title}</h3>
+		{
+			section.subtitle && <p class="menu-section-subtitle">{section.subtitle}</p>
+		}
+	</div>
+
+	<ul class="menu-list">
+		{
+			section.items.map((item) => (
+				<li class="menu-item">
+					<div class="menu-item-row">
+						<h4 class="menu-item-name">{item.name}</h4>
+						{item.price && <p class="menu-item-price">{item.price}</p>}
+					</div>
+					{item.description && <p class="menu-item-description">{item.description}</p>}
+					{item.note && <p class="menu-item-note">{item.note}</p>}
+				</li>
+			))
+		}
+	</ul>
+</section>

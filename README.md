@@ -1,46 +1,30 @@
-# Astro Starter Kit: Basics
+# Solara Taverna Website
 
-```sh
-npm create astro@latest -- --template basics
-```
+Production-ready Astro + Tailwind website for a Mediterranean restaurant.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- Astro
+- Tailwind CSS
+- Static pages + Netlify Forms
 
-Inside of your Astro project, you'll see the following folders and files:
+## Pages
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- Home
+- Menu
+- Contact
+- Reservations
+- Catering
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Commands
 
-## 🧞 Commands
+- `npm run dev` - Start local development server
+- `npm run build` - Build production output in `dist/`
+- `npm run preview` - Preview production build locally
 
-All commands are run from the root of the project, from a terminal:
+## Deployment Notes
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Contact form name: `contact-form`
+- Catering form name: `catering-inquiry`
+- Both forms are configured for Netlify form handling with honeypot protection
+- Reservations page contains a placeholder OpenTable embed URL that should be replaced before launch

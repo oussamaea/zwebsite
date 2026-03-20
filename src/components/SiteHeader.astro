@@ -1,0 +1,70 @@
+---
+interface NavItem {
+	label: string;
+	href: string;
+}
+
+interface Props {
+	currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const navItems: NavItem[] = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Menu', href: '/menu' },
+	{ label: 'Contact', href: '/contact' },
+	{ label: 'Reservations', href: '/reservations' },
+	{ label: 'Catering', href: '/catering' }
+];
+
+function normalizePath(path: string) {
+	if (path.length > 1 && path.endsWith('/')) return path.slice(0, -1);
+	return path;
+}
+
+const normalizedCurrentPath = normalizePath(currentPath);
+---
+
+<header class="site-header" data-site-header>
+	<div class="site-container py-4">
+		<div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+			<a
+				href="/"
+				aria-label="Solara Taverna home"
+				class="site-logo-lockup"
+			>
+				<img
+					src="/images/logo.svg"
+					alt=""
+					aria-hidden="true"
+					class="site-logo-mark-header"
+					width="331"
+					height="72"
+					decoding="async"
+				/>
+			</a>
+
+			<nav aria-label="Primary">
+				<ul class="flex flex-wrap gap-2 md:justify-end">
+					{
+						navItems.map((item) => {
+							const isActive = normalizePath(item.href) === normalizedCurrentPath;
+							return (
+								<li>
+									<a
+										href={item.href}
+										aria-current={isActive ? 'page' : undefined}
+										class:list={['nav-link', isActive && 'nav-link-active']}
+									>
+										{item.label}
+									</a>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,57 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="site-container py-12">
+		<div class="grid gap-8 border-t border-brand-line/80 pt-10 md:grid-cols-4">
+			<div class="space-y-2 md:col-span-2">
+				<a href="/" aria-label="Zaytouna Bistro" class="site-logo-lockup-footer">
+					<img
+						src="/images/logo.svg"
+						alt=""
+						aria-hidden="true"
+						class="site-logo-mark site-logo-mark-footer"
+						width="88"
+						height="88"
+						loading="lazy"
+						decoding="async"
+					/>
+					<span class="logo-wordmark logo-wordmark-footer">Zaytouna Bistro</span>
+				</a>
+				<p class="max-w-md text-sm leading-relaxed text-brand-muted">
+					An elegant Mediterranean dining room centered on seasonal ingredients, generous hospitality, and
+					coastal flavors.
+				</p>
+			</div>
+
+			<div class="space-y-2">
+				<p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-muted">Hours</p>
+				<p class="text-sm text-brand-muted">Mon-Fri 8:00 AM - 7:00 PM</p>
+				<p class="text-sm text-brand-muted">Sat 8:00 AM - 5:00 PM</p>
+				<p class="text-sm text-brand-muted">Sun Closed</p>
+			</div>
+
+			<div class="space-y-2">
+				<p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-muted">Visit</p>
+				<p class="text-sm text-brand-muted">183 Pembroke St W, Pembroke, ON K8A 5N4</p>
+				<a href="mailto:chefjaouad06@gmail.com" class="text-sm text-brand-muted hover:text-brand-accent">
+					chefjaouad06@gmail.com
+				</a>
+			</div>
+		</div>
+
+		<div class="mt-8 flex flex-col gap-4 border-t border-brand-line/70 pt-6 sm:flex-row sm:items-center sm:justify-between">
+			<nav aria-label="Footer">
+				<ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-brand-muted">
+					<li><a href="/" class="hover:text-brand-accent">Home</a></li>
+					<li><a href="/menu" class="hover:text-brand-accent">Menu</a></li>
+					<li><a href="/contact" class="hover:text-brand-accent">Contact</a></li>
+					<li><a href="/reservations" class="hover:text-brand-accent">Reservations</a></li>
+					<li><a href="/catering" class="hover:text-brand-accent">Catering</a></li>
+				</ul>
+			</nav>
+			<p class="text-sm text-brand-muted">&copy; {year} Zaytouna. All rights reserved.</p>
+		</div>
+	</div>
+</footer>
