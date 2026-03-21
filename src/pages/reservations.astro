@@ -6,45 +6,139 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
 	title="Reservations | Zaytouna"
-	description="Plan your visit to Zaytouna. For larger groups or preferred times, send a request through OpenTable."
+	description="Send a reservation request to Zaytouna. We review each request and confirm by phone or email."
 >
 	<PageHero
-		eyebrow="Visit Planning"
-		title="Plan Your Visit To Zaytouna"
-		description="Zaytouna is self-service and open Monday to Saturday. Use the request panel below if you want to plan ahead for groups or peak hours."
+		eyebrow="Reservation Requests"
+		title="Request A Visit At Zaytouna"
+		description="Zaytouna is self-service and open Monday to Saturday. Share your preferred date and time, and our team will confirm by phone or email."
 		theme="reservations"
 	/>
 
 	<section class="site-container page-section">
-		<div class="surface-panel-strong" data-reveal>
-			<SectionTitle
-				eyebrow="OpenTable"
-				title="Send A Visit Request"
-				description="Use the panel below to share your party details and preferred timing."
-			/>
-
-			<div class="embed-shell" data-reveal data-reveal-delay="70">
-				<!-- Replace this placeholder iframe src with your restaurant's real OpenTable embed URL. -->
-				<iframe
-					title="OpenTable reservation widget"
-					src="https://www.opentable.com/widget/reservation/canvas?rid=123456&type=standard&theme=standard&color=1&dark=false&iframe=true&domain=com&lang=en-US"
-					loading="lazy"
-					class="h-[620px] w-full border-0"
-				></iframe>
+		<div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+			<div class="surface-panel" data-reveal>
+				<SectionTitle
+					eyebrow="How It Works"
+					title="Simple Manual Confirmation"
+					description="Reservation requests are reviewed by our staff and confirmed personally."
+				/>
+				<ul class="detail-list">
+					<li>Best for groups or guests planning ahead</li>
+					<li>Open Monday to Saturday</li>
+					<li>Self-service Mediterranean dining</li>
+				</ul>
 			</div>
 
-			<div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between" data-reveal="soft">
-				<p class="reservation-note">
-					If the embedded panel does not load on your device, use the direct OpenTable link.
-				</p>
-				<a
-					href="https://www.opentable.com/"
-					target="_blank"
-					rel="noreferrer"
-					class="btn-primary w-full sm:w-auto"
+			<div class="surface-panel-strong" data-reveal data-reveal-delay="80">
+				<SectionTitle
+					eyebrow="Request Form"
+					title="Reservation Request"
+					description="This is a request form, not an instant booking confirmation."
+				/>
+				<p class="reservation-note mt-4">We’ll review your request and confirm by phone or email.</p>
+
+				<form
+					name="reservation-request"
+					method="POST"
+					netlify
+					data-netlify="true"
+					data-netlify-honeypot="bot-field"
+					netlify-honeypot="bot-field"
+					action="/thank-you/"
+					class="mt-6 space-y-4"
+					accept-charset="UTF-8"
 				>
-					Open OpenTable
-				</a>
+					<input type="hidden" name="form-name" value="reservation-request" />
+					<p class="hidden">
+						<label>Do not fill this out: <input name="bot-field" /></label>
+					</p>
+
+					<div>
+						<label for="reservation-full-name" class="form-label">Full Name</label>
+						<input
+							id="reservation-full-name"
+							name="full_name"
+							type="text"
+							required
+							autocomplete="name"
+							class="form-control"
+						/>
+					</div>
+
+					<div class="form-grid-2">
+						<div>
+							<label for="reservation-phone" class="form-label">Phone Number</label>
+							<input
+								id="reservation-phone"
+								name="phone"
+								type="tel"
+								required
+								autocomplete="tel"
+								class="form-control"
+							/>
+						</div>
+						<div>
+							<label for="reservation-email" class="form-label">Email</label>
+							<input
+								id="reservation-email"
+								name="email"
+								type="email"
+								required
+								autocomplete="email"
+								class="form-control"
+							/>
+						</div>
+					</div>
+
+					<div class="form-grid-2">
+						<div>
+							<label for="reservation-date" class="form-label">Preferred Date</label>
+							<input
+								id="reservation-date"
+								name="preferred_date"
+								type="date"
+								required
+								class="form-control"
+							/>
+						</div>
+						<div>
+							<label for="reservation-time" class="form-label">Preferred Time</label>
+							<input
+								id="reservation-time"
+								name="preferred_time"
+								type="time"
+								required
+								class="form-control"
+							/>
+						</div>
+					</div>
+
+					<div>
+						<label for="reservation-guest-count" class="form-label">Number of Guests</label>
+						<input
+							id="reservation-guest-count"
+							name="guest_count"
+							type="number"
+							min="1"
+							required
+							class="form-control"
+						/>
+					</div>
+
+					<div>
+						<label for="reservation-notes" class="form-label">Special Notes (Optional)</label>
+						<textarea
+							id="reservation-notes"
+							name="notes"
+							rows="5"
+							placeholder="Tell us anything helpful about your request."
+							class="form-control"
+						></textarea>
+					</div>
+
+					<button type="submit" class="btn-primary w-full sm:w-auto">Send Reservation Request</button>
+				</form>
 			</div>
 		</div>
 	</section>
