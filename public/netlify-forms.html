@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="robots" content="noindex,nofollow" />
+		<title>Netlify Form Detection</title>
+	</head>
+	<body>
+		<!--
+			Static fallback forms to guarantee Netlify form detection at deploy time.
+			These names and field names must stay in sync with visible forms.
+		-->
+		<form
+			name="contact-form"
+			method="POST"
+			action="/thank-you/"
+			netlify
+			data-netlify="true"
+			data-netlify-honeypot="bot-field"
+			hidden
+		>
+			<input type="hidden" name="form-name" value="contact-form" />
+			<input type="text" name="bot-field" />
+			<input type="text" name="name" />
+			<input type="email" name="email" />
+			<input type="tel" name="phone" />
+			<textarea name="message"></textarea>
+		</form>
+
+		<form
+			name="catering-inquiry"
+			method="POST"
+			action="/thank-you/"
+			netlify
+			data-netlify="true"
+			data-netlify-honeypot="bot-field"
+			hidden
+		>
+			<input type="hidden" name="form-name" value="catering-inquiry" />
+			<input type="text" name="bot-field" />
+			<input type="text" name="name" />
+			<input type="email" name="email" />
+			<input type="tel" name="phone" />
+			<input type="date" name="event_date" />
+			<input type="number" name="guest_count" />
+			<select name="service_type">
+				<option value="">Select service type</option>
+				<option value="panini-platters">Panini Platters</option>
+				<option value="individual-boxed-paninis">Individual Boxed Paninis</option>
+				<option value="individual-boxed-meals">Individual Boxed Meals</option>
+				<option value="family-style-trays">Family-Style Trays</option>
+				<option value="salads-and-sides">Salads &amp; Sides</option>
+				<option value="desserts-and-sweets">Desserts &amp; Sweets</option>
+				<option value="custom-request">Custom Request</option>
+			</select>
+			<textarea name="notes"></textarea>
+		</form>
+	</body>
+</html>
