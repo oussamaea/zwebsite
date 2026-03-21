@@ -1,0 +1,29 @@
+---
+import PageHero from '../components/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Thank You | Zaytouna"
+	description="Your request has been sent to Zaytouna."
+	noIndex={true}
+>
+	<PageHero
+		eyebrow="Thank You"
+		title="Your Request Was Sent"
+		description="We have received your form submission and will follow up with you soon."
+		theme="contact"
+	/>
+
+	<section class="site-container page-section pt-0 sm:pt-0">
+		<div class="surface-panel-strong max-w-2xl space-y-4">
+			<p class="section-copy">
+				You can continue browsing our menu or return to the homepage.
+			</p>
+			<div class="flex flex-col gap-3 sm:flex-row">
+				<a href="/menu" class="btn-primary w-full sm:w-auto">View Menu</a>
+				<a href="/" class="btn-secondary w-full sm:w-auto">Back To Home</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

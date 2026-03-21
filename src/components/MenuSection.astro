@@ -10,7 +10,7 @@ const { section, sectionId } = Astro.props as Props;
 const titleId = `${sectionId}-title`;
 ---
 
-<section id={sectionId} aria-labelledby={titleId} class="menu-section" data-reveal="soft">
+<section id={sectionId} aria-labelledby={titleId} class="menu-section">
 	<div class="menu-section-header">
 		<h3 id={titleId} class="section-title text-[1.9rem] sm:text-[2.25rem]">{section.title}</h3>
 		{

@@ -100,7 +100,7 @@ const navSections = groupedSections.flatMap((group) => group.sections);
 		<div class="space-y-12">
 			{
 				groupedSections.map((group) => (
-					<section class="menu-group surface-panel-strong" aria-labelledby={`${group.id}-title`} data-reveal>
+					<section class="menu-group surface-panel-strong" aria-labelledby={`${group.id}-title`}>
 						<div class="menu-group-header">
 							<h2 id={`${group.id}-title`} class="menu-group-title">
 								{group.title}
