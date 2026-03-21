@@ -36,7 +36,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					title="Reservation Request"
 					description="This is a request form, not an instant booking confirmation."
 				/>
-				<p class="reservation-note mt-4">We’ll review your request and confirm by phone or email.</p>
+				<p class="reservation-note mt-4">
+					We'll review your request and confirm by phone or email. Phone number is required; email is optional.
+				</p>
 
 				<form
 					name="reservation-request"
@@ -79,12 +81,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 							/>
 						</div>
 						<div>
-							<label for="reservation-email" class="form-label">Email</label>
+							<label for="reservation-email" class="form-label">Email (Optional)</label>
 							<input
 								id="reservation-email"
 								name="email"
 								type="email"
-								required
 								autocomplete="email"
 								class="form-control"
 							/>

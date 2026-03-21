@@ -37,6 +37,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					title="Catering Request"
 					description="Share your event details and we will follow up with availability and a suggested menu."
 				/>
+				<p class="reservation-note mt-4">
+					Phone number is required so we can confirm with you. Email is optional.
+				</p>
 
 				<form
 					name="catering-inquiry"
@@ -68,12 +71,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 					<div class="form-grid-2">
 						<div>
-							<label for="catering-email" class="form-label">Email</label>
+							<label for="catering-email" class="form-label">Email (Optional)</label>
 							<input
 								id="catering-email"
 								name="email"
 								type="email"
-								required
 								autocomplete="email"
 								class="form-control"
 							/>
