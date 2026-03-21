@@ -6,12 +6,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
 	title="Reservations | Zaytouna"
-	description="Reserve your table at Zaytouna and enjoy Mediterranean dining in a warm, elegant setting."
+	description="Plan your visit to Zaytouna. For larger groups or preferred times, send a request through OpenTable."
 >
 	<PageHero
-		eyebrow="Reservations"
-		title="Reserve Your Table At Zaytouna"
-		description="Secure your preferred time in advance, especially for weekend evenings and celebratory dinners."
+		eyebrow="Visit Planning"
+		title="Plan Your Visit To Zaytouna"
+		description="Zaytouna is self-service and open Monday to Saturday. Use the request panel below if you want to plan ahead for groups or peak hours."
 		theme="reservations"
 	/>
 
@@ -19,8 +19,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<div class="surface-panel-strong" data-reveal>
 			<SectionTitle
 				eyebrow="OpenTable"
-				title="Book Through OpenTable"
-				description="Use the reservation panel below to choose your party size and preferred seating time."
+				title="Send A Visit Request"
+				description="Use the panel below to share your party details and preferred timing."
 			/>
 
 			<div class="embed-shell" data-reveal data-reveal-delay="70">
@@ -35,7 +35,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 			<div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between" data-reveal="soft">
 				<p class="reservation-note">
-					If the embedded experience does not load on your device, use the direct reservation link.
+					If the embedded panel does not load on your device, use the direct OpenTable link.
 				</p>
 				<a
 					href="https://www.opentable.com/"
@@ -43,7 +43,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					rel="noreferrer"
 					class="btn-primary w-full sm:w-auto"
 				>
-					Reserve Now
+					Open OpenTable
 				</a>
 			</div>
 		</div>
