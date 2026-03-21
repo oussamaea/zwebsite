@@ -125,7 +125,7 @@
 	}
 
 	.nav-link {
-		@apply inline-flex items-center rounded-full px-3 py-2 text-sm font-medium text-brand-muted transition-all duration-300 hover:bg-brand-accent-soft/50 hover:text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface;
+		@apply inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-brand-muted transition-all duration-300 hover:bg-brand-accent-soft/50 hover:text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface;
 	}
 
 	.nav-link-active {
@@ -144,6 +144,63 @@
 		@apply inline-flex items-center text-brand-ink shrink-0;
 	}
 
+	.mobile-nav {
+		@apply relative;
+	}
+
+	.mobile-nav-toggle {
+		@apply inline-flex list-none items-center gap-2 rounded-full border border-brand-line/75 bg-brand-surface-strong/95 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-brand-ink shadow-sm transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface;
+	}
+
+	.mobile-nav-toggle::-webkit-details-marker {
+		display: none;
+	}
+
+	.mobile-nav-toggle-icon {
+		@apply inline-flex h-4 w-5 flex-col justify-between;
+	}
+
+	.mobile-nav-toggle-icon span {
+		display: block;
+		height: 1.5px;
+		width: 100%;
+		border-radius: 999px;
+		background-color: currentColor;
+		transition: transform 220ms ease, opacity 220ms ease;
+		transform-origin: center;
+	}
+
+	.mobile-nav[open] .mobile-nav-toggle-icon span:nth-child(1) {
+		transform: translateY(6px) rotate(44deg);
+	}
+
+	.mobile-nav[open] .mobile-nav-toggle-icon span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.mobile-nav[open] .mobile-nav-toggle-icon span:nth-child(3) {
+		transform: translateY(-6px) rotate(-44deg);
+	}
+
+	.mobile-nav-panel {
+		@apply absolute right-0 top-[calc(100%+0.65rem)] z-50 w-[min(18rem,calc(100vw-2.4rem))] rounded-2xl border border-brand-line/80 bg-brand-surface-strong/96 p-3 backdrop-blur-md;
+		box-shadow:
+			0 12px 24px -18px rgba(47, 41, 31, 0.44),
+			0 0 0 1px rgba(215, 202, 178, 0.58);
+	}
+
+	.mobile-nav-list {
+		@apply space-y-1;
+	}
+
+	.mobile-nav-link {
+		@apply block rounded-xl px-3 py-2.5 text-sm font-medium text-brand-ink transition-colors duration-200 hover:bg-brand-accent-soft/45;
+	}
+
+	.mobile-nav-link-active {
+		@apply bg-brand-accent/65;
+	}
+
 	.site-logo-lockup-footer {
 		@apply inline-flex items-center gap-3 text-brand-ink;
 	}
@@ -154,7 +211,7 @@
 	}
 
 	.site-logo-mark-header {
-		@apply block h-12 w-auto sm:h-[52px] md:h-[60px] lg:h-[68px];
+		@apply block h-[46px] w-auto sm:h-[50px] md:h-[60px] lg:h-[68px];
 		filter: drop-shadow(0 8px 18px rgba(27, 23, 17, 0.22));
 	}
 
@@ -226,6 +283,11 @@
 		background-image:
 			linear-gradient(140deg, rgba(177, 197, 83, 0.16), transparent 54%),
 			linear-gradient(180deg, rgba(34, 29, 22, 0.46), rgba(34, 29, 22, 0.64));
+	}
+
+	.hero-shell-cinematic .hero-inner {
+		padding-top: clamp(8.4rem, 26vw, 12rem);
+		padding-bottom: clamp(5.3rem, 18vw, 8rem);
 	}
 
 	.hero-shell-cinematic .eyebrow {
@@ -301,7 +363,11 @@
 	}
 
 	.hero-actions {
-		@apply mt-8 flex flex-wrap gap-3;
+		@apply mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap;
+	}
+
+	.hero-shell-cinematic .hero-actions {
+		margin-top: clamp(1.9rem, 5vw, 2.35rem);
 	}
 
 	.section-title {
@@ -499,6 +565,30 @@ body.home-page:not(.hero-scrolled) .site-header .site-logo-mark-header {
 		brightness(1.1)
 		saturate(1.06)
 		drop-shadow(0 10px 22px rgba(20, 17, 13, 0.62));
+}
+
+body.home-page:not(.hero-scrolled) .site-header .mobile-nav-toggle {
+	color: #f8f2e4;
+	border-color: rgba(248, 242, 228, 0.42);
+	background: rgba(24, 21, 16, 0.22);
+}
+
+body.home-page:not(.hero-scrolled) .site-header .mobile-nav-panel {
+	border-color: rgba(248, 242, 228, 0.3);
+	background: rgba(28, 24, 18, 0.92);
+}
+
+body.home-page:not(.hero-scrolled) .site-header .mobile-nav-link {
+	color: #f8f2e4;
+}
+
+body.home-page:not(.hero-scrolled) .site-header .mobile-nav-link:hover {
+	background: rgba(248, 242, 228, 0.12);
+}
+
+body.home-page:not(.hero-scrolled) .site-header .mobile-nav-link-active {
+	background: rgba(177, 197, 83, 0.42);
+	color: #ffffff;
 }
 
 body.home-page.hero-scrolled .site-header .site-logo-mark-header {

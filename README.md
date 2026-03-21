@@ -1,4 +1,4 @@
-# Solara Taverna Website
+# Zaytouna Website
 
 Production-ready Astro + Tailwind website for a Mediterranean restaurant.
 

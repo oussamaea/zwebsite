@@ -11,15 +11,15 @@ interface Props {
 }
 
 const {
-	title = 'Solara Taverna | Mediterranean Restaurant',
-	description = 'A warm Mediterranean dining experience with seasonal small plates, handmade pasta, and coastal-inspired hospitality.',
+	title = 'Zaytouna | Mediterranean Restaurant',
+	description = 'A warm Mediterranean dining experience with fresh paninis, hot meals, vibrant salads, and handcrafted drinks.',
 	pathname,
 	noIndex = false
 } = Astro.props;
 
 const currentPath = pathname ?? Astro.url.pathname;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.url).toString();
-const ogSiteName = 'Solara Taverna';
+const ogSiteName = 'Zaytouna';
 const isHomePage = currentPath === '/';
 ---
 

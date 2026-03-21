@@ -27,13 +27,9 @@ const normalizedCurrentPath = normalizePath(currentPath);
 ---
 
 <header class="site-header" data-site-header>
-	<div class="site-container py-4">
-		<div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-			<a
-				href="/"
-				aria-label="Solara Taverna home"
-				class="site-logo-lockup"
-			>
+	<div class="site-container py-3 md:py-4">
+		<div class="flex items-center justify-between gap-4 md:gap-8">
+			<a href="/" aria-label="Zaytouna home" class="site-logo-lockup">
 				<img
 					src="/images/logo.svg"
 					alt=""
@@ -45,8 +41,40 @@ const normalizedCurrentPath = normalizePath(currentPath);
 				/>
 			</a>
 
-			<nav aria-label="Primary">
-				<ul class="flex flex-wrap gap-2 md:justify-end">
+			<details class="mobile-nav md:hidden">
+				<summary class="mobile-nav-toggle">
+					<span class="sr-only">Toggle navigation menu</span>
+					<span class="mobile-nav-toggle-label">Menu</span>
+					<span class="mobile-nav-toggle-icon" aria-hidden="true">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+				</summary>
+				<nav aria-label="Mobile primary" class="mobile-nav-panel">
+					<ul class="mobile-nav-list">
+						{
+							navItems.map((item) => {
+								const isActive = normalizePath(item.href) === normalizedCurrentPath;
+								return (
+									<li>
+										<a
+											href={item.href}
+											aria-current={isActive ? 'page' : undefined}
+											class:list={['mobile-nav-link', isActive && 'mobile-nav-link-active']}
+										>
+											{item.label}
+										</a>
+									</li>
+								);
+							})
+						}
+					</ul>
+				</nav>
+			</details>
+
+			<nav aria-label="Primary" class="hidden md:block">
+				<ul class="flex flex-nowrap items-center gap-2">
 					{
 						navItems.map((item) => {
 							const isActive = normalizePath(item.href) === normalizedCurrentPath;
