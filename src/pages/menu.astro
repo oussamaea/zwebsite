@@ -1,7 +1,6 @@
 ---
 import MenuSection from '../components/MenuSection.astro';
 import PageHero from '../components/PageHero.astro';
-import SectionTitle from '../components/SectionTitle.astro';
 import { menuNotes, menuSections, type MenuSection as MenuDataSection } from '../data/menu';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -75,18 +74,6 @@ const navSections = groupedSections.flatMap((group) => group.sections);
 	/>
 
 	<section class="site-container page-section">
-		<div class="surface-panel mb-10 space-y-5" data-reveal>
-			<SectionTitle
-				eyebrow="Curated Selection"
-				title="Easy To Browse, Designed For Sharing"
-				description="Each section is grouped so guests can move naturally from small plates and mains to paninis, salads, and refreshing drinks."
-			/>
-			<p class="section-copy max-w-3xl">
-				Please let us know about allergies or dietary preferences before ordering and our team will be happy
-				to guide you.
-			</p>
-		</div>
-
 		<nav aria-label="Menu sections" class="mb-10 flex flex-wrap gap-2" data-reveal="soft">
 			{
 				navSections.map(({ section, sectionId }) => (
